@@ -49,7 +49,7 @@ app.get('/', function (req, res) {
 
 app.put('/update', function (req, res) {
   const changeRequired = {username: 'Jon'}
-  const changeData = {name: 'String'}
+  const changeData = {ingredients[0].amount: 7}
   const changeType = {new: true}
   drInk.findOneAndUpdate(changeRequired, changeData, changeType, function (err) {
     if (err) return console.error(err)
