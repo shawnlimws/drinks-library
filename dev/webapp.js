@@ -51,9 +51,9 @@ app.get('/', (req, res) => {
   res.render('index')
 })
 
-app.post('/mydrink', upload.array(), function (req, res) {
-  console.log(req.body.name)
-  res.json(req.body.name)
+app.post('/', function (req, res) {
+  console.log(req.query)
+  res.json(req.query)
   // const newingrendient = [
   //   {
   //     'unit': 'ml',
