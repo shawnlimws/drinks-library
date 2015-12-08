@@ -32,7 +32,7 @@ const DrInk = connection.model(collectionName, drinksSchema)
 
 const findDrink = { 'username': 'Q Q' }
 
-app.get('/', function (req, res) {
+app.get('/mydrink', function (req, res) {
   DrInk.findOne(findDrink, (err, drinkData) => {
     if (err) return console.error(err)
     res.send(drinkData)
@@ -41,7 +41,7 @@ app.get('/', function (req, res) {
   })
 })
 
-app.post('/', function (req, res) {
+app.post('/mydrink', function (req, res) {
   const newingrendient = [
     {
       'unit': 'ml',
@@ -73,7 +73,7 @@ app.post('/', function (req, res) {
   res.send('new data')
 })
 
-app.delete('/', function (req, res) {
+app.delete('/mydrink', function (req, res) {
   DrInk.findOneAndRemove(findDrink, function (err) {
     if (err) return console.error(err)
 // console.log('save to dB !!!')
@@ -83,7 +83,7 @@ app.delete('/', function (req, res) {
   res.send('data deleted')
 })
 
-app.put('/', function (req, res) {
+app.put('/mydrink', function (req, res) {
   const changeData = {
     'glass': 'cup W'
   }
