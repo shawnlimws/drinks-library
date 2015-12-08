@@ -18,7 +18,7 @@ const ingrendientSchema = mongoose.Schema({
   'ingredient': String
 })
 
-const DrinksSchema = mongoose.Schema({
+const drinksSchema = mongoose.Schema({
   'username': String,
   'name': String,
   'glass': String,
@@ -28,18 +28,12 @@ const DrinksSchema = mongoose.Schema({
   'preparation': String
 })
 
-const drInk = connection.model(collectionName, DrinksSchema)
+const DrInk = connection.model(collectionName, drinksSchema)
 
-const findDrink = { 'username': 'Jon' }
-// app.use('/', express.static(__dirname + '/public'))
-//
-// app.get('/', (req, res) => {
-//   res.setHeader('Content-Type', 'text/html')
-//   res.render('index.html')
-// })
+const findDrink = { 'username': 'Q Q' }
 
-app.get('/', function (req, res) {
-  drInk.findOne(findDrink, (err, drinkData) => {
+app.get('/mydrink', function (req, res) {
+  DrInk.findOne(findDrink, (err, drinkData) => {
     if (err) return console.error(err)
     res.send(drinkData)
     // console.log('in read module, read data is ' + drinkData)
@@ -47,17 +41,59 @@ app.get('/', function (req, res) {
   })
 })
 
-app.put('/update', function (req, res) {
-  const changeRequired = {username: 'Jon'}
-  const changeData = {ingredients[0].amount: 7}
-  const changeType = {new: true}
-  drInk.findOneAndUpdate(changeRequired, changeData, changeType, function (err) {
+app.post('/mydrink', function (req, res) {
+  const newingrendient = [
+    {
+      'unit': 'ml',
+      'amount': 4,
+      'ingredient': 'how i know'
+    },
+    {
+      'unit': 'cc',
+      'amount': 5,
+      'ingredient': 'how u know'
+    }
+  ]
+
+  var newDrink = new DrInk()
+  newDrink.username = 'Q Q'
+  newDrink.name = 'my drink'
+  newDrink.glass = 'cup'
+  newDrink.category = 'Before shitting'
+  newDrink.ingredients = newingrendient
+  newDrink.garnish = 'shit'
+  newDrink.preparation = 'drink more water'
+
+  newDrink.save(function (err) {
     if (err) return console.error(err)
 // console.log('save to dB !!!')
       // mongoose.disconnect()
   })
-  console.log('/put, save data')
-  res.send('updated')
+  console.log('post => save new data')
+  res.send('new data')
+})
+
+app.delete('/mydrink', function (req, res) {
+  DrInk.findOneAndRemove(findDrink, function (err) {
+    if (err) return console.error(err)
+// console.log('save to dB !!!')
+      // mongoose.disconnect()
+  })
+  console.log('delete data')
+  res.send('data deleted')
+})
+
+app.put('/mydrink', function (req, res) {
+  const changeData = {
+    'glass': 'cup W'
+  }
+  DrInk.findOneAndUpdate(findDrink, changeData, function (err) {
+    if (err) return console.error(err)
+// console.log('save to dB !!!')
+      // mongoose.disconnect()
+  })
+  console.log('updated data')
+  res.send('data updated')
 })
 
 module.exports = app
