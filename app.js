@@ -3,9 +3,13 @@ const app = express()
 const fetch = require('node-fetch')
 const sortBy = require('lodash.sortby')
 
-const filter = require('./middleware/filter')
+const filterName = require('./middleware/filterName')
+const filterIngredient = require('./middleware/filterIngredient')
+const filterGlass = require('./middleware/filterGlass')
 
-app.use(filter)
+app.use(filterName)
+app.use(filterIngredient)
+app.use(filterGlass)
 
 app.get('/drinks', function (req, res) {
   fetch('https://raw.githubusercontent.com/teijo/iba-cocktails/master/recipes.json')
