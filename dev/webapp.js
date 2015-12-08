@@ -1,6 +1,9 @@
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
+const bodyParser = require('body-parser')
+const multer = require('multer') // v1.0.5
+const upload = multer() // for parsing multipart/form-data
 // const Schema = mongoose.Schema
 // const path = require('path')
 const dataBase = 'drinkdb'
@@ -32,45 +35,54 @@ const DrInk = connection.model(collectionName, drinksSchema)
 
 const findDrink = { 'username': 'Q Q' }
 
-app.get('/mydrink', function (req, res) {
-  DrInk.findOne(findDrink, (err, drinkData) => {
-    if (err) return console.error(err)
-    res.send(drinkData)
-    // console.log('in read module, read data is ' + drinkData)
-    // mongoose.disconnect()
-  })
+app.use('/', express.static(__dirname + '/public'))
+app.use(bodyParser.json()) // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+// app.get('/mydrink', function (req, res) {
+//   DrInk.findOne(findDrink, (err, drinkData) => {
+//     if (err) return console.error(err)
+//     res.send(drinkData)
+//     // console.log('in read module, read data is ' + drinkData)
+//     // mongoose.disconnect()
+//   })
+// })
+app.get('/', (req, res) => {
+  res.setHeader('Content-Type', 'text/html')
+  res.render('index')
 })
 
-app.post('/mydrink', function (req, res) {
-  const newingrendient = [
-    {
-      'unit': 'ml',
-      'amount': 4,
-      'ingredient': 'how i know'
-    },
-    {
-      'unit': 'cc',
-      'amount': 5,
-      'ingredient': 'how u know'
-    }
-  ]
+app.post('/mydrink', upload.array(), function (req, res) {
+  console.log(req.body.name)
+  res.json(req.body.name)
+  // const newingrendient = [
+  //   {
+  //     'unit': 'ml',
+  //     'amount': 4,
+  //     'ingredient': 'how i know'
+  //   },
+  //   {
+  //     'unit': 'cc',
+  //     'amount': 5,
+  //     'ingredient': 'how u know'
+  //   }
+  // ]
+  //
+  // var newDrink = new DrInk()
+  // newDrink.username = 'Q 1'
+  // newDrink.name = 'my drink'
+  // newDrink.glass = 'cup'
+  // newDrink.category = 'Before shitting'
+  // newDrink.ingredients = newingrendient
+  // newDrink.garnish = 'shit'
+  // newDrink.preparation = 'drink more water'
 
-  var newDrink = new DrInk()
-  newDrink.username = 'Q Q'
-  newDrink.name = 'my drink'
-  newDrink.glass = 'cup'
-  newDrink.category = 'Before shitting'
-  newDrink.ingredients = newingrendient
-  newDrink.garnish = 'shit'
-  newDrink.preparation = 'drink more water'
-
-  newDrink.save(function (err) {
-    if (err) return console.error(err)
-// console.log('save to dB !!!')
-      // mongoose.disconnect()
-  })
-  console.log('post => save new data')
-  res.send('new data')
+//   newDrink.save(function (err) {
+//     if (err) return console.error(err)
+// // console.log('save to dB !!!')
+//       // mongoose.disconnect()
+//   })
+  // console.log('post => save new data')
+  // res.send('new data')
 })
 
 app.delete('/mydrink', function (req, res) {
