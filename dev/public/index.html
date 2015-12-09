@@ -3,12 +3,10 @@
   <head>
     <meta charset="utf-8">
     <title>Drink</title>
-    <link rel="stylesheet" href="drink.css" charset="utf-8">
   </head>
   <body>
     <div class='createdName'></div>
-
-    <form action="/mydrink" method="post">
+      <form>
         <div>
             <label for="author">author:</label>
             <input type="text" id="author" />
@@ -26,13 +24,34 @@
             <input type="text" id="garnish" />
         </div>
         <div>
+            <label for="category">category:</label>
+            <input type="text" id="category" />
+        </div>
+        <div>
             <label for="preparation">preparation:</label>
             <input type="text" id="preparation" />
         </div>
-        <div class="button">
-            <button type="submit">save your data</button>
-        </div>
-    </form>
-    <script src='drink.js'></script>
+        <div class='ingredientsAll' id='ingredientsAll'>
+          <div id='ingredientsclass1'>
+              <label for="ingredients">ingredients 1:<br></label>
+                <label for="unit">unit:</label>
+                <input type="text" id="unit1" name='unit' />
+                <label for="amount">amount:</label>
+                <input type="number" id="amount1" name='amount' />
+                <label for="ingredient">ingredient:</label>
+                <input type="text" id="ingredient1" name='ingredient' />
+            </div>
+          </div>
+          <div class="buttonIn">
+            <button type="ingredientsAdd" id='buttonAddI'>Add more ingredints</button>
+          </div>
+          <div class="buttonNew">
+              <button type="buttonNew" id='buttonNew'>New addition</button>
+          </div>
+          <div class="buttonSu">
+              <button type="submit" id='buttonSu'>save your data</button>
+          </div>
+      </form>
+    <script src='index.js'defer></script>
   </body>
 </html>
