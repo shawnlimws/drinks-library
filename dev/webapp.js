@@ -26,7 +26,7 @@ const drinksSchema = mongoose.Schema({
   'name': String,
   'glass': String,
   'category': String,
-  'ingredients': ingrendientSchema,
+  'ingredients': [ingrendientSchema],
   'garnish': String,
   'preparation': String
 })
@@ -36,9 +36,9 @@ const DrInk = connection.model(collectionName, drinksSchema)
 const findDrink = { 'username': 'Q Q' }
 
 app.use('/', express.static(__dirname + '/public'))
-app.use(bodyParser.json()) // for parsing application/json
-app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
-// app.get('/mydrink', function (req, res) {
+// app.use(bodyParser.json()) // for parsing application/json
+// app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+// // app.get('/mydrink', function (req, res) {
 //   DrInk.findOne(findDrink, (err, drinkData) => {
 //     if (err) return console.error(err)
 //     res.send(drinkData)
@@ -51,36 +51,23 @@ app.get('/', (req, res) => {
   res.render('index')
 })
 
-app.post('/mydrink', upload.array(), function (req, res) {
-  console.log(req.body.name)
-  res.json(req.body.name)
-  // const newingrendient = [
-  //   {
-  //     'unit': 'ml',
-  //     'amount': 4,
-  //     'ingredient': 'how i know'
-  //   },
-  //   {
-  //     'unit': 'cc',
-  //     'amount': 5,
-  //     'ingredient': 'how u know'
-  //   }
-  // ]
-  //
-  // var newDrink = new DrInk()
-  // newDrink.username = 'Q 1'
-  // newDrink.name = 'my drink'
-  // newDrink.glass = 'cup'
-  // newDrink.category = 'Before shitting'
-  // newDrink.ingredients = newingrendient
-  // newDrink.garnish = 'shit'
-  // newDrink.preparation = 'drink more water'
+app.post('/', function (req, res) {
+  var data = JSON.parse(req.query.data)
 
-//   newDrink.save(function (err) {
-//     if (err) return console.error(err)
-// // console.log('save to dB !!!')
-//       // mongoose.disconnect()
-//   })
+  var newDrink = new DrInk()
+  newDrink.username = data.author
+  newDrink.name = data.name
+  newDrink.glass = data.glass
+  newDrink.category = data.category
+  newDrink.ingredients = data.ingredients
+  newDrink.garnish = data.garnish
+  newDrink.preparation = data.preparation
+
+  newDrink.save(function (err) {
+    if (err) return console.error(err)
+console.log('save to dB !!!')
+      mongoose.disconnect()
+ })
   // console.log('post => save new data')
   // res.send('new data')
 })
