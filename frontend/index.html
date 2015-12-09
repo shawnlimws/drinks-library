@@ -3,12 +3,15 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="app.css"></link>
-    <link href='https://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
     <script src="app.js" defer></script>
     <title>Drinks Library</title>
   </head>
   <body>
     <h1>Feeling Thirsty?</h1>
-    <h2>Find a drink to suit your taste</h2>
+    <div>
+      <input class="input" placeholder=" " onblur="this.placeholder=''" onfocus="this.placeholder='What would you like to have?'"/><span class="fa fa-search fa-2x"></span>
+    </div>
   </body>
 </html>
