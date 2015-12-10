@@ -10,7 +10,14 @@ body {
    align-items: center;
    align-content: center;
    justify-content: center;
-   background: url('../assets/background.jpg')
+   background: url('../assets/background.jpg');
+   text-align: center;
+}
+h1 {
+  margin-bottom: 1%;
+}
+h2 {
+  margin-top: 0;
 }
 
 section {
@@ -97,4 +104,9 @@ input[type="search"] {
    background: -o-linear-gradient(top, #e5e4e4 1%,#f1f1f1 100%);
    background: -ms-linear-gradient(top, #e5e4e4 1%,#f1f1f1 100%);
    background: linear-gradient(to bottom, #e5e4e4 1%,#f1f1f1 100%);
+}
+
+footer {
+  display: flex;
+  align-items: flex-end;
 }
