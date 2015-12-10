@@ -60,7 +60,7 @@ function addDrink () {
   //   'ingredient': ''
   // }
   // console.log(author, name, glass, garnish, preparation)
-  //data.ingredients.push(oneIngredient)
+  // data.ingredients.push(oneIngredient)
 
   const totalIngredient = document.getElementById('ingredientsAll').childElementCount
   var counter = Array(totalIngredient).fill(1).map((e, index) => (e + index))
