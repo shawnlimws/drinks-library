@@ -9,9 +9,19 @@
     <title>Drinks Library</title>
   </head>
   <body>
-    <h1>Feeling Thirsty?</h1>
-    <div>
-      <input class="input" placeholder=" " onblur="this.placeholder=''" onfocus="this.placeholder='What would you like to have?'"/><span class="fa fa-search fa-2x"></span>
-    </div>
+    <h1>Drinks Library</h1>
+    <h2>Search for any drink, cocktail or ingredient</h2>
+    <section>
+      <div class="wrap">
+         <input type="radio" id="popular" name="sort" /><label for="popular">By Name</label>
+         <input type="radio" id="recent" name="sort" checked /><label for="recent">By Ingredient</label>
+      </div>
+      <div class="wrap">
+         <i class="fa fa-search"></i><input type="search" placeholder="What would you like to have..." />
+      </div>
+   </section>
+   <footer>
+     <h3>Create you own drink</h3>
+   </footer>
   </body>
 </html>
