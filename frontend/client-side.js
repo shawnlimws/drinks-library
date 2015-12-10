@@ -4,6 +4,7 @@ document.querySelector('body')
   .addEventListener('keypress', event => {
     var searchValue = document.querySelector('#searchValue').value
     var byName = document.querySelector('#byName').checked
+    var byIngredient = document.querySelector('#byIngredient').checked
     var key = event.which || event.keyCode
     var enter = 13
     if (key === enter && byName === true) {
