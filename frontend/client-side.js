@@ -8,22 +8,31 @@ document.querySelector('body')
     var key = event.which || event.keyCode
     var enter = 13
     if (key === enter && byName === true) {
-      console.log('goodjob')
       window.fetch('/drinks?byName=' + searchValue)
-      .then((response) => {
-        return response.json()
-      })
+      .then((response) => response.json())
       .then(json => {
         document.querySelector('#results').innerHTML = ''
-        var insertPosition = Array.prototype.slice.call(json)
-        insertPosition.forEach(items => {
-          console.log(items.name)
+        var list = Array.prototype.slice.call(json)
+        list.forEach(drink => {
           var div = document.createElement('div')
-          div.textContent = items.name
-          div.setAttribute('class', 'note')
+          div.textContent = drink.name
+          div.setAttribute('class', 'cocktails')
           document.querySelector('#results').appendChild(div)
         })
       })
+    } else if (key === enter && byIngredient === true) {
+      window.fetch('/drinks?byIngredient=' + searchValue)
+        .then((response) => response.json())
+        .then(json => {
+          document.querySelector('#results').innerHTML = ''
+          var list = Array.prototype.slice.call(json)
+          list.forEach(drink => {
+            var div = document.createElement('div')
+            div.textContent = drink.name
+            div.setAttribute('class', 'cocktails')
+            document.querySelector('#results').appendChild(div)
+          })
+        })
     }
   })
 
