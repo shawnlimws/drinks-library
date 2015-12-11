@@ -1,69 +1,75 @@
 export function addAndDisplay () {
-  const displayString = '<form>' +
-    '<div>' +
-        '<label for=\'name\'>name:</label>' +
-        '<input type=\'text\' id="name" />' +
+  const displayString = '<form id=\'formCreate\'>' +
+    ' <div id=\'authorDiv\'>' +
+        '<label for=\'name\'>Name: </label>' +
+        '<input type=\'text\' id="name" autocomplete=off placeholder=\'Name of drink ...\' />' +
     '</div>' +
-    '<div>' +
-        '<label for=\'glass\'>glass:</label>' +
-        '<input type=\'text\' id=\'glass\' />' +
+    '<div id=\'glassDiv\'>' +
+        '<label for=\'glass\'>Glass: </label>' +
+        '<input type=\'text\' id=\'glass\' placeholder=\'Drinkware ...\' />' +
     '</div>' +
-    '<div>' +
-        '<label for=\'garnish\'>garnish:</label>' +
-        '<input type=\'text\' id=\'garnish\' />' +
+    '<div id=\'garnishDiv\'>' +
+        '<label for=\'garnish\'>Garnish: </label>' +
+        '<input type=\'text\' id=\'garnish\' placeholder=\'Garnish ...\' />' +
     '</div>' +
-    '<div>' +
-        '<label for=\'category\'>category:</label>' +
-        '<input type=\'text\' id=\'category\' />' +
+    '<div id=\'categoryDiv\'>' +
+        '<label for=\'category\'>Category: </label>' +
+        '<input type=\'text\' id=\'category\' placeholder=\'Category ...\' />' +
     '</div>' +
-    '<div>' +
-        '<label for=\'preparation\'>preparation:</label>' +
-        '<input type=\'text\' id=\'preparation\' />' +
+    '<div id=\'preparationDiv\'>' +
+        '<label for=\'preparation\'>Preparation:</label>' +
+        '<input type=\'text\' id=\'preparation\' placeholder=\'Preparation ...\' />' +
     '</div>' +
     '<div class=\'ingredientsAll\' id=\'ingredientsAll\'>' +
       '<div id=\'ingredientsclass1\'>' +
-          '<label for=\'ingredients\'>ingredients 1:<br></label>' +
-            '<label for=\'unit\'>unit:</label>' +
-            '<input type=\'text\' id=\'unit1\' name=\'unit\' />' +
-            '<label for=\'amount\'>amount:</label>' +
-            '<input type=\'number\' id=\'amount1\' name=\'amount\' />' +
-            '<label for=\'ingredient\'>ingredient:</label>' +
-            '<input type=\'text\' id=\'ingredient1\' name=\'ingredient\' />' +
+          '<label for=\'ingredients\'>Ingredients 1: <br></label>' +
+            '<label for=\'unit\'>Unit: <select id=\'unit1\'> <option value=\'cl\'> cl' +
+      '<option value=\'floz\'> fl oz</select></label>' +
+            // '<input type=\'text\' id=\'unit1\' name=\'unit\' />' +
+            '<label for=\'amount\'>Amount:' +
+            '<input type=\'number\' id=\'amount1\' name=\'amount\' /></label>' +
+            '<label for=\'ingredient\'>Ingredient:' +
+            '<input type=\'text\' id=\'ingredient1\' name=\'ingredient\' placeholder=\'Ingredient ...\'  /></label>' +
         '</div>' +
       '</div>' +
       '<div class=\'buttonIn\'>' +
-        '<button type=\'ingredientsAdd\' id=\'buttonAddI\'>Add more ingredints</button>' +
+        '<button type=\'ingredientsAdd\' id=\'buttonAddI\'>Add more ingredients</button>' +
       '</div>' +
-      '<div class=\'buttonNew\'>' +
-          '<button type=\'buttonNew\' id=\'buttonNew\'>New addition</button>' +
-      '</div>' +
+      // '<div class=\'buttonNew\'>' +
+      //     '<button type=\'buttonNew\' id=\'buttonNew\'>New addition</button>' +
+      // '</div>' +
       '<div class=\'buttonSu\'>' +
           '<button type=\'submit\' id=\'buttonSu\'>save your data</button>' +
       '</div>' +
     '<form>'
-  var inSert = document.querySelector('#insertHere')
-  inSert.insertAdjacentHTML('afterend', displayString)
+  if (document.querySelector('#saveMessage')) document.querySelector('footer').removeChild(document.querySelector('#saveMessage'))
+  document.querySelector('#insertHere').insertAdjacentHTML('afterend', displayString)
 }
 
 export function addInput () {
   // var numberofIngredient = 1
   // var nextcounter = 2
-  var limitofIngredient = 3
+  var limitofIngredient = 2
   const totalIngredient = document.querySelector('#ingredientsAll').childElementCount
   console.log(totalIngredient)
-  var idName = 'ingredientsclass' + (totalIngredient).toString(10)
+  var idName = '#ingredientsclass' + totalIngredient
+  // (totalIngredient).toString(10)
   var stringDiv = '<div id=\'ingredientsclass' + (totalIngredient + 1) + '\'>' +
       '<label for=\'ingredients\'>ingredients ' + (totalIngredient + 1) + ': <br></label>' +
-        '<label for=\'unit\'>unit: </label>' +
-        '<input type=\'text\' id=\'unit' + (totalIngredient + 1) + '\' name=\'unit\' />' +
-        '<label for=\'amount\'> amount: </label>' +
+        // '<label for=\'unit\'>unit: </label>' +
+        '<label for=\'unit\'>Unit: <select id=\'unit' + (totalIngredient + 1) + '\'> <option value=\'cl\'> cl' +
+  '<option value=\'floz\'>fl oz</select></label>' +
+      //  '<input type=\'text\' id=\'unit' + (totalIngredient + 1) + '\' name=\'unit\' />' +
+        '<label for=\'amount\'>Amount:' +
         '<input type=\'number\' id=\'amount' + (totalIngredient + 1) + '\' name=\'amount\' />' +
-        '<label for=\'ingredient\'> ingredient: </label>' +
-        '<input type=\'text\' id=\'ingredient' + (totalIngredient + 1) + '\' name=\'ingredient\'/>' +
+        '</label>' +
+        '<label for=\'ingredient\'>Ingredient:' +
+        '<input type=\'text\' id=\'ingredient' + (totalIngredient + 1) + '\' name=\'ingredient\' placeholder=\'Ingredient ...\' />' +
+        '</label>' +
     '</div>'
-
-  newdiv = document.querySelector('#' + idName)
-  newdiv.insertAdjacentHTML('afterend', stringDiv)
+  console.log(idName)
+  // newdiv = document.querySelector('#' + idName)
+  document.querySelector(idName).insertAdjacentHTML('afterend', stringDiv)
 
   if (totalIngredient === limitofIngredient) {
     var newdiv = document.querySelector('#ingredientsAll')
@@ -100,9 +106,20 @@ export function addDrink () {
 
 // console.log( counter)
   window.fetch('/?data=' + JSON.stringify(data), myInit)
+  .then(res => {
+    console.log(res)
+
+    document.querySelector('footer').removeChild(document.querySelector('#formCreate'))
+    var newdiv = document.querySelector('#insertHere')
+    newdiv.insertAdjacentHTML('afterend', '<div id=\'saveMessage\'>' +
+    'Data saved ...' +
+    '</div>')
+  })
 }
 
 export function clearInput () {
+  if (document.querySelector('#saveMessage')) document.querySelector('footer').removeChild(document.querySelector('#saveMessage'))
+  // clearinsertHere()
   const totalIngredient = document.querySelector('#ingredientsAll').childElementCount
   var counter = Array(totalIngredient).fill(1).map((e, index) => Array(totalIngredient).length - (e + index))
   // console.log(counter)
@@ -128,4 +145,12 @@ export function clearInput () {
     '</div>')
   }
   console.log('clear')
+}
+
+export function clearinsertHere () {
+  if (document.querySelector('#saveMessage')) {
+    console.log('saveM')
+    document.querySelector('footer').removeChild(document.querySelector('#saveMessage'))
+  }
+  if (document.querySelector('#formCreate')) document.querySelector('footer').removeChild(document.querySelector('#formCreate'))
 }
