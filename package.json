@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "standard",
-    "start": "node server.js",
+    "start": "npm run start-server",
+    "start-server": "node server.js",
     "build-client-side-js": "browserify frontend/client-side.js --outfile frontend/client-side-dist.js --transform babelify --verbose"
   },
   "repository": {
