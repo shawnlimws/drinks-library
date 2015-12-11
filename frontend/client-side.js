@@ -1,5 +1,5 @@
 
-import { addAndDisplay, addInput, addDrink, clearInput, clearinsertHere } from './lib/add.js'
+import { addAndDisplay, addInput, addDrink } from './lib/add.js'
 
 // For search functions
 
@@ -39,30 +39,20 @@ document.querySelector('body')
     }
   })
 
-// import {addDrink, addInput, clearInput} from './lib/module.js'
-// var addAndDisplay = require('./lib/addAndDisplay')
-// For create drinks
 var addDisplay = true
 document.querySelector('footer')
     .addEventListener('click', event => {
       // console.log('excellent')
       event.preventDefault()
 
-  if (addDisplay) {
-      addAndDisplay()
+      if (addDisplay) {
+        addAndDisplay()
         addDisplay = false
       }
-      // if (event.target.id !== 'H3') { return }
-      // else {
-      // console.log(event.target.id)
-      if (event.target.id === 'buttonSu')
-       {
+      if (event.target.id === 'buttonSu') {
         addDisplay = true
         addDrink()
       }
       if (event.target.id === 'buttonAddI') addInput()
       if (event.target.id === 'H3') addDisplay = false
-      // clearInput()
-
-    // }
     })
