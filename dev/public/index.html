@@ -3,11 +3,13 @@
   <head>
     <meta charset="utf-8">
     <title>Drink</title>
+    <link rel="stylesheet" href="index.css">
   </head>
   <body>
-    <div class='createdName'></div>
+    <div id='title'></div>
+    <div class='createdName'>
       <form>
-        <div>
+        <div id='authorDiv'>
             <label for="author">author:</label>
             <input type="text" id="author" />
         </div>
@@ -51,7 +53,8 @@
           <div class="buttonSu">
               <button type="submit" id='buttonSu'>save your data</button>
           </div>
-      </form>
-    <script src='index.js'defer></script>
+        </form>
+      </div>
+    <script src='client-side.dist.js'defer></script>
   </body>
 </html>
