@@ -23,7 +23,6 @@ app.get('/drinks', function (req, res) {
   .then(data => data.json())
   .then(unsorted => sortBy(unsorted, 'name'))
   .then(drinks => res.send(drinks))
-  console.log('great!')
 })
 
 module.exports = app

@@ -2,7 +2,7 @@ body {
    width: 100%;
    margin: 0;
    padding: 0;
-   font: 16px 'Source Sans Pro', sans-serif;
+   font-family: 'Nixie One', cursive;
    color: white;
    background: #000000;
    display: flex;
@@ -10,24 +10,28 @@ body {
    align-items: center;
    align-content: center;
    justify-content: center;
-   background: url('./assets/background.jpg');
    text-align: center;
+   padding: 0;
+   margin: 0;
+}
+img{
+  height: 25%;
+  width: 70%;
+  margin-top: -15px;
+  margin-bottom: 10px;
 }
 h1 {
-  margin-bottom: 1%;
+  text-shadow:
 }
 h2 {
   margin-top: 0;
-}
-
-section {
-   width: 300px;
 }
 
 .wrap {
    display: flex;
    flex-direction: row;
    position: relative;
+   width: 300px;
 }
 
 input[type="radio"] {

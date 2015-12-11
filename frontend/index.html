@@ -4,26 +4,27 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="app.css"></link>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Nixie+One' rel='stylesheet' type='text/css'>
+    <link rel="shortcut icon" type="image/ico" href="../assets/favicon.png" />
     <script src="client-side.js" defer></script>
     <title>Drinks Library</title>
   </head>
   <body>
-    <h1>Drinks Library</h1>
+    <h1>The Bartender</h1>
+    <!-- <HR width=100%> -->
+    <img src='../assets/top-banner.jpg'>
     <h2>Search for any drink, cocktail or ingredient</h2>
-    <section>
-      <div class="wrap">
-         <input type="radio" id="byName" name="sort" /><label for="byName">By Name</label>
-         <input type="radio" id="byIngredient" name="sort" /><label for="byIngredient">By Ingredient</label>
-      </div>
-      <div class="wrap">
+    <div class="wrap">
+      <input type="radio" id="byName" name="sort" checked/><label for="byName">By Name</label>
+      <input type="radio" id="byIngredient" name="sort" /><label for="byIngredient">By Ingredient</label>
+    </div>
+    <div class="wrap">
          <i class="fa fa-search"></i><input id="searchValue" type="search" placeholder="What would you like to have..." />
-      </div>
-   </section>
-   <div id='results' class="results">
-   </div>
+    </div>
    <footer>
      <h3>Create you own drink</h3>
    </footer>
+   <div id='results' class="results">
+     </div>
   </body>
 </html>
