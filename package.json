@@ -2,7 +2,7 @@
   "name": "drinks-library",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
     "test": "standard",
     "start": "npm run start-server",
