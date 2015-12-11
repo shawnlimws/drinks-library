@@ -125,6 +125,81 @@ footer {
   position: relative;
   text-decoration: none;
 }
+
+/*#authorDiv {
+  display: flex;
+  position: relative;
+  font-size: 20px;
+  align-items: center;
+  text-decoration: none;
+}
+label[for="name"] {
+  border-radius: 15px 0 0 15px;
+}*/
+
+#name, #glass, #garnish, #category, #preparation {
+border-radius: 5px;
+width: 300px;
+height: 20px;
+border-top-width: 0px;
+border-bottom-width: 0px;
+margin-top: 5px;
+margin-bottom: 5px;
+margin-left: 5px;
+margin-right: 5px;
+}
+#ingredient1, #ingredient2, #ingredient3 {
+    margin-left: 5px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    margin-top: 5px;
+}
+#unit1, #unit2, #unit3 {
+    width: 55px;
+}
+#amount1, #amount2, #amount3 {
+  width: 30px;
+  margin-left: 5px;
+  margin-right: 5px;
+  border-radius: 5px;
+}
+#saveMessage {
+  
+}
+#buttonNew, #buttonAddI, #buttonSu{
+   position: relative;
+   border-radius: 8px;
+   margin-top: 2px;
+   margin-bottom: 2px;
+   width: 50%;
+   font-size: 0.9rem;
+   line-height: 2.0rem;
+   text-align: center;
+   text-shadow: 0 1px 0 white;
+   cursor: pointer;
+   transition: all .5s;
+   box-sizing: border-box;
+   box-shadow: inset 0 5px 2px 0 rgba(255,255,255,.6), inset 0 0 0 1px #b8b8b8, 0 2px 2px 0 rgba(0,0,0,.4);
+   background: #fbfbfb;
+   background: -webkit-linear-gradient(top, #fbfbfb 0%,#dddddc 100%);
+   background: -moz-linear-gradient(top, #fbfbfb 0%, #dddddc 100%);
+   background: -o-linear-gradient(top, #fbfbfb 0%,#dddddc 100%);
+   background: -ms-linear-gradient(top, #fbfbfb 0%,#dddddc 100%);
+   background: linear-gradient(to bottom, #fbfbfb 0%,#dddddc 100%);
+   z-index: 2;
+   color: black;
+}
+
+label[for="unit"] {
+   width: 100px;
+}
+label[for="amount"] {
+  width:120px;
+}
+
+label[for="ingredient"] {
+  width: 230px;
+}
 footer:hover {
   cursor: pointer
 }
