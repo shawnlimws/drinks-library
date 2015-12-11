@@ -1,9 +1,5 @@
 export function addAndDisplay () {
   const displayString = '<form>' +
-    // '<div id=\'authorDiv\'>' +
-    //     '<label for=\'author\'>author:</label>' +
-    //     '<input type=\'text\' id=\'author\' />' +
-    // '</div>' +
     '<div>' +
         '<label for=\'name\'>name:</label>' +
         '<input type=\'text\' id="name" />' +
@@ -65,26 +61,16 @@ export function addInput () {
         '<label for=\'ingredient\'> ingredient: </label>' +
         '<input type=\'text\' id=\'ingredient' + (totalIngredient + 1) + '\' name=\'ingredient\'/>' +
     '</div>'
-//  console.log('addInput => ' + idName)
 
   newdiv = document.querySelector('#' + idName)
   newdiv.insertAdjacentHTML('afterend', stringDiv)
-  // numberofIngredient = numberofIngredient + 1
-  // nextcounter = nextcounter + 1
 
   if (totalIngredient === limitofIngredient) {
     var newdiv = document.querySelector('#ingredientsAll')
     newdiv.nextElementSibling.remove()
-  //  alert('You have reached the limit of adding ' + counter + ' inputs')
   }
 }
 export function addDrink () {
-  // console.log('addDrink')
-  // var author = document.querySelector('#author').value
-  // var name = document.querySelector('#name').value
-  // var glass = document.querySelector('#glass').value
-  // var garnish = document.querySelector('#garnish').value
-  // var preparation = document.querySelector('#preparation').value
   const myHeaders = new window.Headers()
   const myInit = {method: 'POST',
                  headers: myHeaders,
@@ -97,14 +83,6 @@ export function addDrink () {
     'category': document.querySelector('#category').value,
     'ingredients': [],
     'preparation': document.querySelector('#preparation').value }
-  // var oneIngredient = {
-  //   'unit': '',
-  //   'amount': 0,
-  //   'ingredient': ''
-  // }
-  // console.log(author, name, glass, garnish, preparation)
-  // data.ingredients.push(oneIngredient)
-
   const totalIngredient = document.querySelector('#ingredientsAll').childElementCount
   var counter = Array(totalIngredient).fill(1).map((e, index) => (e + index))
   counter.forEach(e => {
