@@ -42,7 +42,7 @@ const ingrendientSchema = mongoose.Schema({
 })
 
 const drinksSchema = mongoose.Schema({
-  'username': String,
+  // 'username': String,
   'name': String,
   'glass': String,
   'category': String,
@@ -57,7 +57,7 @@ app.post('/', function (req, res) {
   var data = JSON.parse(req.query.data)
 
   var newDrink = new DrInk()
-  newDrink.username = data.author
+  // newDrink.username = data.author
   newDrink.name = data.name
   newDrink.glass = data.glass
   newDrink.category = data.category
@@ -65,13 +65,14 @@ app.post('/', function (req, res) {
   newDrink.garnish = data.garnish
   newDrink.preparation = data.preparation
 
-  newDrink.save(function (err) {
-    if (err) return console.error(err)
-// console.log('save to dB !!!')
-    mongoose.disconnect()
+  newDrink.save(function (err, product) {
+    if (err) {
+      return res.send(err)
+    } else {
+      console.log(JSON.stringify(product))
+      return res.send(JSON.stringify(product))
+    }
   })
-  // console.log('post => save new data')
-  // res.send('new data')
 })
 
 module.exports = app
