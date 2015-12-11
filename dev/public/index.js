@@ -14,12 +14,12 @@ var limitofIngredient = 4
 function addInput () {
   var idName = 'ingredientsclass' + numberofIngredient.toString(10)
   var stringDiv = '<div id=\'ingredientsclass' + nextcounter + '\'>' +
-      '<label for=\'ingredients\'>ingredients ' + nextcounter + ':<br></label>' +
-        '<label for=\'unit\'>unit:</label>' +
+      '<label for=\'ingredients\'>ingredients ' + nextcounter + ': <br></label>' +
+        '<label for=\'unit\'>unit: </label>' +
         '<input type=\'text\' id=\'unit' + nextcounter + '\' name=\'unit\' />' +
-        '<label for=\'amount\'>amount:</label>' +
+        '<label for=\'amount\'> amount: </label>' +
         '<input type=\'number\' id=\'amount' + nextcounter + '\' name=\'amount\' />' +
-        '<label for=\'ingredient\'>ingredient:</label>' +
+        '<label for=\'ingredient\'> ingredient: </label>' +
         '<input type=\'text\' id=\'ingredient' + nextcounter + '\' name=\'ingredient\'/>' +
     '</div>'
 //  console.log('addInput => ' + idName)
@@ -60,7 +60,7 @@ function addDrink () {
   //   'ingredient': ''
   // }
   // console.log(author, name, glass, garnish, preparation)
-  //data.ingredients.push(oneIngredient)
+  // data.ingredients.push(oneIngredient)
 
   const totalIngredient = document.getElementById('ingredientsAll').childElementCount
   var counter = Array(totalIngredient).fill(1).map((e, index) => (e + index))
@@ -82,17 +82,33 @@ function addDrink () {
 }
 
 function clearInput () {
-  const totalIngredient = document.getElementById('ingredientsAll').childElementCount
+  const totalIngredient = document.querySelector('#ingredientsAll').childElementCount
   var counter = Array(totalIngredient).fill(1).map((e, index) => Array(totalIngredient).length - (e + index))
   // console.log(counter)
   counter.forEach(e => {
     if (e === 0) return
-    var newdiv = document.getElementById('ingredientsclass' + e.toString(10))
-    console.log(e)
+    var newdiv = document.querySelector('#ingredientsclass' + e.toString(10))
+    // console.log(e)
     newdiv.nextElementSibling.remove()
   })
+  document.querySelector('#name').value = ''
+  document.querySelector('#glass').value = ''
+  document.querySelector('#garnish').value = ''
+  document.querySelector('#category').value = ''
+  document.querySelector('#preparation').value = ''
+  document.querySelector('#garnish').value = ''
+  document.querySelector('#unit1').value = ''
+  document.querySelector('#amount1').value = ''
+  document.querySelector('#ingredient1').value = ''
+  if (totalIngredient === 4) {
+    var newdiv = document.querySelector('#ingredientsAll')
+    newdiv.insertAdjacentHTML('afterend', '<div class="buttonIn">' +
+      '<button type=\'ingredientsAdd\' id=\'buttonAddI\'>Add more ingredints</button>' +
+    '</div>')
+  }
   numberofIngredient = 1
   nextcounter = 2
   limitofIngredient = 4
+
   console.log('clear')
 }

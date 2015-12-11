@@ -1,11 +1,32 @@
 const express = require('express')
 const app = express()
+const fetch = require('node-fetch')
+const sortBy = require('lodash.sortby')
+
+const filterName = require('./middleware/filterName')
+const filterIngredient = require('./middleware/filterIngredient')
+const filterGlass = require('./middleware/filterGlass')
+
+app.use(filterName)
+app.use(filterIngredient)
+app.use(filterGlass)
+
+// For static pages
+app.use('/', express.static(__dirname + '/frontend'))
+
+// app.get('/', function (req, res) {
+//   fetch('/')
+// })
+
+app.get('/drinks', function (req, res) {
+  fetch('https://raw.githubusercontent.com/teijo/iba-cocktails/master/recipes.json')
+  .then(data => data.json())
+  .then(unsorted => sortBy(unsorted, 'name'))
+  .then(drinks => res.send(drinks))
+  console.log('great!')
+})
+
 const mongoose = require('mongoose')
-// const bodyParser = require('body-parser')
-// const multer = require('multer') // v1.0.5
-// const upload = multer() // for parsing multipart/form-data
-// const Schema = mongoose.Schema
-// const path = require('path')
 const dataBase = 'drinkdb'
 const collectionName = 'drinks'
 const dbUri = 'mongodb://' +
@@ -33,15 +54,6 @@ const drinksSchema = mongoose.Schema({
 
 const DrInk = connection.model(collectionName, drinksSchema)
 
-const findDrink = { 'username': 'Q Q' }
-
-app.use('/', express.static(__dirname + '/public'))
-
-app.get('/', (req, res) => {
-  res.setHeader('Content-Type', 'text/html')
-  res.render('index')
-})
-
 app.post('/', function (req, res) {
   var data = JSON.parse(req.query.data)
 
@@ -61,29 +73,6 @@ app.post('/', function (req, res) {
   })
   // console.log('post => save new data')
   // res.send('new data')
-})
-
-app.delete('/mydrink', function (req, res) {
-  DrInk.findOneAndRemove(findDrink, function (err) {
-    if (err) return console.error(err)
-// console.log('save to dB !!!')
-      // mongoose.disconnect()
-  })
-  console.log('delete data')
-  res.send('data deleted')
-})
-
-app.put('/mydrink', function (req, res) {
-  const changeData = {
-    'glass': 'cup W'
-  }
-  DrInk.findOneAndUpdate(findDrink, changeData, function (err) {
-    if (err) return console.error(err)
-// console.log('save to dB !!!')
-      // mongoose.disconnect()
-  })
-  console.log('updated data')
-  res.send('data updated')
 })
 
 module.exports = app
