@@ -1,5 +1,5 @@
 
-import { addAndDisplay, addInput, addDrink, clearInput } from './lib/add.js'
+// import { addAndDisplay, addInput, addDrink, clearInput } from './lib/add.js'
 
 // For search functions
 
@@ -17,8 +17,9 @@ document.querySelector('body')
         document.querySelector('#results').innerHTML = ''
         var list = Array.prototype.slice.call(json)
         list.forEach(drink => {
+          var ingredientList = drink.ingredients.map(element => element.ingredient || element.special).join(', ')
           var div = document.createElement('div')
-          div.textContent = drink.name
+          div.textContent = drink.name + ': ' + ingredientList
           div.setAttribute('class', 'cocktails')
           document.querySelector('#results').appendChild(div)
         })
@@ -30,8 +31,10 @@ document.querySelector('body')
           document.querySelector('#results').innerHTML = ''
           var list = Array.prototype.slice.call(json)
           list.forEach(drink => {
+            var ingredientList = drink.ingredients.map(element => element.ingredient || element.special).join(', ')
+            console.log(ingredientList)
             var div = document.createElement('div')
-            div.textContent = drink.name
+            div.textContent = drink.name + ': ' + ingredientList
             div.setAttribute('class', 'cocktails')
             document.querySelector('#results').appendChild(div)
           })
@@ -42,20 +45,20 @@ document.querySelector('body')
 // import {addDrink, addInput, clearInput} from './lib/module.js'
 // var addAndDisplay = require('./lib/addAndDisplay')
 // For create drinks
-var addDisplay = true
-document.querySelector('footer')
-    .addEventListener('click', event => {
-      console.log('excellent')
-      event.preventDefault()
-      if (addDisplay) {
-        addAndDisplay()
-        addDisplay = false
-      }
-      // console.log(event.target.id)
-      if (event.target.id === 'buttonSu') addDrink()
-      if (event.target.id === 'buttonAddI') addInput()
-      if (event.target.id === 'buttonNew') clearInput()
-    })
+// var addDisplay = true
+// document.querySelector('footer')
+//     .addEventListener('click', event => {
+//       console.log('excellent')
+//       event.preventDefault()
+//       if (addDisplay) {
+//         addAndDisplay()
+//         addDisplay = false
+//       }
+//       // console.log(event.target.id)
+//       if (event.target.id === 'buttonSu') addDrink()
+//       if (event.target.id === 'buttonAddI') addInput()
+//       if (event.target.id === 'buttonNew') clearInput()
+//     })
 
 //
 //
